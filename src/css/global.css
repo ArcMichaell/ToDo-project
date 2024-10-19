@@ -1,0 +1,242 @@
+.header {
+
+    background-color: #2E0854;
+    color: #FFF;
+    position: relative;
+    border-bottom: 5px solid transparent;
+    background-image: linear-gradient(to right, #2E0854, #2E0854), linear-gradient(to right, #8A2BE2, #FF00FF);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+
+}
+
+.header__wrapper {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-shrink: 1;
+}
+
+.header__logo-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation__list {
+    display: flex;
+    align-items: center;
+    gap: 1.9rem;
+}
+
+.link-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.header__auth-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+.user-info {
+    display: none;
+    align-items: center;
+    padding: 7px 15px;
+    border: 2px solid #f4f4f4;
+    background-color: #f4f4f423;
+    border-radius: 25px;
+}
+
+.avatar {
+    width: 30px;
+    /* Ширина аватарки */
+    height: 30px;
+    /* Высота аватарки */
+    padding: 2px;
+    border-radius: 50%;
+    /* Закругляем аватарку */
+    margin-right: 10px;
+    /* Отступ между аватаркой и именем */
+    border: 2px solid #f4f4f4;
+    /* Рамка вокруг аватарки */
+}
+
+#username {
+    font-weight: bold;
+    /* Жирный шрифт для имени пользователя */
+    color: #f4f4f4;
+    ;
+    /* Цвет текста для имени пользователя */
+}
+
+.burger__menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.burger-line {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+}
+
+
+.link-text,
+.add-button,
+.login-button {
+    color: #FFF;
+    background-color: transparent;
+    padding: 10px 20px;
+    border: 2px solid #8A2BE2;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 300ms ease;
+    position: relative;
+    z-index: 1;
+}
+
+.add-button {
+    background-color: #2E0854;
+    color: #FFF;
+    cursor: pointer;
+
+}
+
+.add-button:hover {
+    background-color: #8A2BE2;
+}
+
+.link-text::before,
+.add-button::before,
+.login-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: rgba(138, 43, 226, 0.5);
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    z-index: -1;
+}
+
+.link-text:hover::before,
+.add-button:hover::before,
+.login-button:hover::before {
+    opacity: 1;
+}
+
+.link-text:hover,
+.add-button:hover,
+.login-button:hover {
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.7), 0 0 30px rgba(138, 43, 226, 0.5);
+}
+
+.guest-user-btn {
+    background-color: #2E0854;
+    border: 2px solid #8A2BE2;
+}
+.footer__wrapper {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #2E0854;
+    color: #FFF;
+}
+
+
+.login-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+}
+
+
+.login-modal-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(138, 43, 226, 0.3);
+    max-width: 400px;
+}
+
+.login-modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.login-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login-close:hover,
+.login-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.login-form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2E0854;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-submit-button:hover {
+    background-color: #8A2BE2;
+}
+
+#loginButton {
+    display: none;
+}

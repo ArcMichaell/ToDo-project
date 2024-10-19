@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TODO</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__wrapper">
+            <div class="header__logo">
+                <span class="header__logo-text">ToDo</span>
+            </div>
+            <nav class="header-navigation">
+                <ul class="navigation__list">
+                    <li class="navigation__list-link">
+                        <a href="index.html" class="link-text">Home</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="todo.html" class="link-text">My TODO</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="about.html" class="link-text">About us</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__auth-menu">
+                <button class="login-button" id="loginButton">Login</button>
+                <div id="user-info" class="user-info" >
+                    <img id="user-avatar" class="avatar" src="" alt="Avatar" display="none">
+                    <span id="username"></span>
+                </div>
+                <div class="burger__menu" id="burgerMenu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="main__wrapper">
+            <section class="main__todo-list">
+                <h1 class="main__todo-title">Мои Задачи</h1>
+                <button class="add-button" id="addTaskButton">Добавить задачу</button>
+                <ul class="todo__list">
+                    
+                </ul>
+            </section>
+            <section class="guest-user">
+                <h1 class="guest__user-title">Войдите в аккаунт и наслождайтесь процессом создания задач!</h1>
+                <p class=guest__user-par">
+                    Войдите в свой аккаунт, чтобы начать управлять своими задачами с легкостью. Создавайте, редактируйте и отслеживайте свои цели, наслаждаясь удобным интерфейсом и функционалом, созданным специально для вас. Не теряйте время — присоединяйтесь к нам и сделайте свой день продуктивнее!
+                </p>
+                <button class="login-button guest-user-btn" id="loginButton">Login</button>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__wrapper">
+            <p>&copy; 2024 ToDo App. Все права защищены.</p>
+        </div>
+    </footer>
+
+<!--!Модальные окна и  -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <span class="login-close" id="closeLoginModal">&times;</span>
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="login-form-group">
+                    <label for="username-input">Имя пользователя</label>
+                    <input type="text" id="username-input" name="username-input" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="password-input">Пароль</label>
+                    <input type="password" id="password-input" name="password-input" required>
+                </div>
+                <button type="submit" class="login-submit-button">Войти</button>
+            </form>
+        </div>
+    </div>
+  
+</body>
+
+</html>

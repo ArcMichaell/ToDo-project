@@ -1,0 +1,25 @@
+.main__about-us {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.main__about-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #2E0854;
+}
+
+.main__about-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    padding: 0 20px;
+    /* Adding some padding */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}

@@ -1,0 +1,69 @@
+
+.main {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.main__wrapper {
+    padding: 20px;
+}
+
+.main__todo-list {
+    display: none;
+    text-align: center;
+}
+
+.main__todo-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.todo__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.todo__item {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.guest-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.guest__user-title {
+    text-align: center;
+}
+
+.delete-button {
+    background-color: #ff4c4c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #ff0000;
+}
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>TO-DO</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__wrapper">
+            <div class="header__logo">
+                <span class="header__logo-text">ToDo</span>
+            </div>
+            <nav class="header-navigation">
+                <ul class="navigation__list">
+                    <li class="navigation__list-link">
+                        <a href="index.html" class="link-text">Home</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="todo.html" class="link-text">My TODO</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="about.html" class="link-text">About us</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__auth-menu">
+                <button class="login-button" id="loginButton">Login</button>
+                <div id="user-info" class="user-info">
+                    <img id="user-avatar" class="avatar" src="" alt="Avatar" display="none">
+                    <span id="username"></span>
+                </div>
+                <div class="burger__menu" id="burgerMenu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__wrapper">
+            <section class="main__welcome">
+                <h1 class="main__welcome-title">Добро пожаловать в ToDo App!</h1>
+                <p class="main__welcome-par">
+                    ToDo App - это ваше идеальное приложение для управления задачами. Создавайте свои списки задач,
+                    устанавливайте приоритеты и следите за выполнением задач!
+                </p>
+            </section>
+            <section class="main__description">
+                <h2 class="main__descripiton-title">Что мы предлагаем:</h2>
+                <ul class="main__description-list">
+                    <li class="description__list-text">Создавайте и управляйте собственными задачами.</li>
+                    <li class="description__list-text">Просматривайте списки задач других пользователей и вдохновляйтесь
+                        их достижениями.</li>
+                </ul>
+            </section>
+            <div class="main__discription">
+                <h1 class="main__discription-title"></h1>
+                <p class="main__discription-text"></p>
+                <p class="main__discription-text"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__wrapper">
+            <p>&copy; 2024 ToDo App. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!--!Модальные окна и другое...  -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <span class="login-close" id="closeLoginModal">&times;</span>
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="login-form-group">
+                    <label for="username-input">Имя пользователя</label>
+                    <input type="text" id="username-input" name="username-input" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="password-input">Пароль</label>
+                    <input type="password" id="password-input" name="password-input" required>
+                </div>
+                <button type="submit" class="login-submit-button">Войти</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

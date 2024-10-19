@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__wrapper">
+            <div class="header__logo">
+                <span class="header__logo-text">ToDo</span>
+            </div>
+            <nav class="header-navigation">
+                <ul class="navigation__list">
+                    <li class="navigation__list-link">
+                        <a href="index.html" class="link-text">Home</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="todo.html" class="link-text">My TODO</a>
+                    </li>
+                    <li class="navigation__list-item">
+                        <a href="about.html" class="link-text">About us</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__auth-menu">
+                <button class="login-button" id="loginButton">Login</button>
+                <div id="user-info" class="user-info">
+                    <img id="user-avatar" class="avatar" src="" alt="Avatar" display="none">
+                    <span id="username"></span>
+                </div>
+                <div class="burger__menu" id="burgerMenu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__wrapper">
+            <section class="main__about-us">
+                <h1 class="main__about-title">О нас</h1>
+                <p class="main__about-description">
+                    Мы - команда, увлеченная созданием удобных и интуитивно понятных приложений для управления задачами.
+                    Наша цель - помочь вам организовать свою жизнь и достичь успеха в выполнении всех задач.
+                    В ToDo App вы можете создавать списки задач, устанавливать приоритеты и отслеживать свой прогресс.
+                    Мы верим, что правильное управление временем - ключ к успеху.
+                </p>
+                <p class="main__about-description">
+                    Присоединяйтесь к нам и начните свое путешествие к более организованной жизни сегодня!
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__wrapper">
+            <p>&copy; 2024 ToDo App. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!--!Модальные окна и другое...  -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <span class="login-close" id="closeLoginModal">&times;</span>
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="login-form-group">
+                    <label for="username-input">Имя пользователя</label>
+                    <input type="text" id="username-input" name="username-input" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="password-input">Пароль</label>
+                    <input type="password" id="password-input" name="password-input" required>
+                </div>
+                <button type="submit" class="login-submit-button">Войти</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
