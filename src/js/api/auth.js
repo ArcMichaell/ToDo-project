@@ -18,12 +18,7 @@ export async function login(username, password) {
     if (data) {
       localStorage.setItem("token",data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return {
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
-      };
     } else {
-      
       return null;
     };
   } catch (error) {
@@ -49,17 +44,21 @@ export async function getUserDataByToken(token) {
 
     const data = await response.json();
     return data;
+
   } catch (error) {
     console.error(`Ошибка при выполнении операции: ${error.message}`);
     return null;
   }
 }
 
+
+// Todo Проверка и обновление токена
+
 export async function checkTokenValidity(token) {
   const url = 'https://dummyjson.com/auth/me';
   try {
     if (!token || token === 'null' || token === '') { 
-      return  null;
+      return null;
      };
 
     const response = await fetch(url, {
@@ -72,14 +71,12 @@ export async function checkTokenValidity(token) {
     if (response.ok) {
       return true
     } else if (response.status === 401) {
-
-
       return null;
     };
 
   } catch (error) {
     console.log(`Ошибка при выполнении операции: ${error.message}`);
-    return false
+    return null;
 
   }
 }
@@ -87,6 +84,13 @@ export async function checkTokenValidity(token) {
 export async function updateToken() {
   const url = 'https://dummyjson.com/auth/refresh';
   const refreshToken = localStorage.getItem('refreshToken');
+
+  if (!refreshToken || refreshToken === 'null' || refreshToken === '') {
+    console.log('Отсутствует refreshToken. Необходимо войти заново.');
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    return null;
+  }
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -97,6 +101,7 @@ export async function updateToken() {
         token: refreshToken
       })
     });
+
     if(!response.ok){
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
@@ -104,6 +109,7 @@ export async function updateToken() {
     }
     if (response.ok) {
       const data = await response.json();
+      localStorage.setItem("token", data.accessToken)
       return data.accessToken;
     } else {
       
