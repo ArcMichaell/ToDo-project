@@ -1,83 +1,93 @@
 import "../css/todo.css"
-import { checkTokenValidity, getUserDataByToken } from "./api/auth";
+import { checkTokenValidity, getUserDataByToken, login, updateToken } from "./api/auth";
 import { getUserTodos } from "./api/todos";
+import { displayUser } from "./common";
+console.log(checkTokenValidity);
 
 document.addEventListener("DOMContentLoaded", async () => {
-   
-    
-    // ! Попробовать единожды проверить токет и его валидацию, и только в этом случае все прогружать
-    await toggleTodoDisplay()
 
-    const userId = await getUserId()
-    const userTodos = await getUserTodos(userId);
+    initApp()
+    const loginForm = document.getElementById("loginForm");
+    loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = document.getElementById("username-input").value;
+        const password = document.getElementById("password-input").value;
+        const tokens = await login(username, password);
 
-    console.log(await userId);
+        if (tokens) {
+            const accessToken = tokens.accessToken;
+            const refreshToken = tokens.refreshToken;
+            const userData = await getUserDataByToken(accessToken);
+            localStorage.setItem("token", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            showTodoSection();
+            await displayUser(accessToken);
+            await displayUserTodos(userData.id)
+        }
 
-    console.log(await userTodos);
-
-    displayUserTodos(await userTodos)
-
-
-    
-
+    })
 
 })
 
 
-
-
-
-
-
-export async function toggleTodoDisplay() {
-    const guestSection = document.querySelector(".guest-user");
-    const todoSection = document.querySelector(".main__todo-list");
-    const token = localStorage.getItem("token")
-    const checkToken = await checkTokenValidity(token)
-
-    if (guestSection && todoSection) {
-        if (!token || token === 'null' || token === '') {
-            guestSection.style.display = "flex";
-            todoSection.style.display = "none";
-            return null
-        } else if (token && checkToken) {
-            guestSection.style.display = "none";
-            todoSection.style.display = "block";
-        }
-    }
-
-};
-async function displayUserTodos(todoObj) {
+async function initApp() {
     const token = localStorage.getItem("token");
-    const todoList = document.querySelector(".todo__list")
-    const todos = await todoObj.todos
-    if (!token || token === 'null' || token === '' || !todoList) { return null }
-    const tokenValidity = await checkTokenValidity(token)
-    if (!tokenValidity) { return }
 
-    if (await todos.length === 0) {
+    const loginButton = document.querySelectorAll("#loginButton")
+    const userData = await getUserDataByToken(token)
+
+
+    if (token !== "null" &&
+        token !== false &&
+        token !== null &&
+        await checkTokenValidity(token)
+    ) {
+        showTodoSection()
+        displayUserTodos(userData.id)
+
+
+    } else if (token === "null" || token == "") {
+        showGuestSection()
+        loginButton.forEach(el => {
+            el.style.display = "flex"
+        })
+    } else {
+        const newToken = await updateToken()
+        localStorage.setItem("token", newToken)
+        initApp()
+    }
+}
+
+async function displayUserTodos(userId) {
+
+    const todoList = await getUserTodos(userId)
+
+    const todos = todoList.todos
+    const todoContainer = document.querySelector(".todo__list")
+    if (!todoList) { return null }
+
+    if (todos.length === 0) {
 
     }
-    await todos.forEach(element => {
+    todos.forEach(element => {
         const li = document.createElement("li");
         li.classList.add("todo__item");
         li.innerHTML = `${element.todo}<button class="delete-button">Удалить</button>`
-        todoList.appendChild(li)
-
+        todoContainer.appendChild(li)
     });
 }
 
-async function getUserId() {
-    try {
-        const token = localStorage.getItem("token");
-        if (!token || token === 'null' || token === '') { return null; };
-        const tokenValidity = await checkTokenValidity(token)
-        if (!tokenValidity) { return null; };
-        const userData = await getUserDataByToken(token);
-        const userId = await userData.id;
-        return userId;
 
-    } catch (error) {
-        console.error(`Ошибка при выполнении операции: ${error.message}`);
-    }
+function showGuestSection() {
+    const guestSection = document.querySelector(".guest-user");
+    const todoSection = document.querySelector(".main__todo-list");
+    guestSection.style.display = "flex";
+    todoSection.style.display = "none";
+}
+
+function showTodoSection() {
+    const guestSection = document.querySelector(".guest-user");
+    const todoSection = document.querySelector(".main__todo-list");
+    guestSection.style.display = "none";
+    todoSection.style.display = "block";
 }

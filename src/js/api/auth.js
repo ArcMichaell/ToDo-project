@@ -34,7 +34,7 @@ export async function login(username, password) {
 
 export async function getUserDataByToken(token) {
   const url = 'https://dummyjson.com/auth/me';
-  if(!token || token === 'null' || token === ''){return null}
+  if(!token || token === 'null' || token == null || token === ''){return null}
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -71,10 +71,8 @@ export async function checkTokenValidity(token) {
 
     if (response.ok) {
       return true
-    } else if (response.status === 401) {
-
-
-      return null;
+    } else if (response.status === 401 || !response.ok) {
+      return false;
     };
 
   } catch (error) {

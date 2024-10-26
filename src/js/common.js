@@ -1,40 +1,13 @@
 import "../css/normalize.css"
 import "../css/global.css"
-import { login, getUserDataByToken, checkTokenValidity, updateToken } from "../js/api/auth";
-import { toggleTodoDisplay } from "./todo";
+import { login, getUserDataByToken, checkTokenValidity } from "../js/api/auth";
 
-let isFunctionCalled = false;
+
 document.addEventListener("DOMContentLoaded", async () => {
-    if(!isFunctionCalled){ 
-        isFunctionCalled = true;
-    const loginButton = document.querySelectorAll("#loginButton");
-
-    const token = localStorage.getItem("token");
-    const refreshToken = localStorage.getItem("refreshToken");
-    if ( token && refreshToken ){
-        if(await checkTokenValidity(token)){
-            await displayUser(token)
-            await toggleTodoDisplay()
-        }else {
-            const newToken  = await updateToken(refreshToken)
-            localStorage.setItem("token", newToken)
-            await displayUser(newToken)
-            await toggleTodoDisplay()
-        }
-        
-    }else{
-        loginButton.forEach(el=>{
-            el.style.display = "flex";
-        })
-    }
-
-   
-
-
+    initApp()
     //!Работа с модальным окном Логина
-   
+    const loginButton = document.querySelectorAll("#loginButton")
     const login_modalController = createModalController("loginModal");
-
     loginButton.forEach(el => {
         el.addEventListener("click", login_modalController);
     });
@@ -50,26 +23,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             login_modalController();
         }
     });
-
-
-
     const loginForm = document.getElementById("loginForm");
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const username = document.getElementById("username-input").value;
         const password = document.getElementById("password-input").value;
-        
         const tokens = await login(username, password);
+
         if (tokens) {
             const accessToken = tokens.accessToken;
             const refreshToken = tokens.refreshToken;
-            
-
             localStorage.setItem("token", accessToken);
-            localStorage.setItem("refreshToken", refreshToken)
+            localStorage.setItem("refreshToken", refreshToken);
 
             await displayUser(accessToken);
-            await toggleTodoDisplay()
             login_modalController();
         }
 
@@ -79,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-function createModalController(modalId) {
+    function createModalController(modalId) {
         let isOpen = false
         return function toggleControl() {
             const modal = document.getElementById(`${modalId}`)
@@ -91,8 +58,29 @@ function createModalController(modalId) {
             }
         }
     }
-    }
+
 })
+
+
+async function initApp() {
+    const token = localStorage.getItem("token");
+    const loginButton = document.querySelectorAll("#loginButton")
+
+
+    if (token !== "null" &&
+        token !== false &&
+        token !== null &&
+        await checkTokenValidity(token)
+    ) {
+        displayUser(token)
+    } else {
+        loginButton.forEach(el => {
+            el.style.display = "flex";
+        })
+    }
+
+}
+
 
 export async function displayUser(token) {
     const userData = await getUserDataByToken(token)
@@ -114,4 +102,3 @@ export async function displayUser(token) {
 
 
 };
-

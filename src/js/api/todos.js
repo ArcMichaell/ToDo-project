@@ -6,7 +6,7 @@ export async function getUserTodos(userId) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-       const data =  response.json()
+       const data = response.json()
         return data
     }catch (error){
         console.error(`Ошибка при выполнении операции: ${error.message}`);
